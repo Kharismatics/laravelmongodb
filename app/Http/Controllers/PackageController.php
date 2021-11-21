@@ -28,7 +28,7 @@ class PackageController extends Controller
             return response()->json($validator->errors(), 400);
         }
         $package = Package::create($request->all());
-        return $package->id;
+        return response()->json([$package->transaction_id]);
     }
     public function show(Package $package)
     {

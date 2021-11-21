@@ -191,7 +191,8 @@ class PackageTest extends TestCase
             ]
         ]);
         $response
-            ->assertStatus(200);
+            ->assertStatus(200)
+            ->assertJson(["d0090c40-539f-479a-8274-899b9970bddc"]);
     }
     public function test_index_after_store()
     {
