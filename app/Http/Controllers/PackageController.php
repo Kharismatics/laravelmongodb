@@ -42,17 +42,12 @@ class PackageController extends Controller
     public function update(Request $request, Package $package)
     {
         $validator = Validator::make($request->all(), [
-            'transaction_id' => ['required', 'min:36', 'max:36'],
-            'customer_name' => ['required'],
-            'customer_code' => ['required'],
+            'customer_code' => ['required', 'min:7', 'max:7'],
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-        $package->fill($request->only([
-            "customer_name",
-            "customer_code",
-        ]));
+        $package->fill($request->all());
         $package->save();
         return
             Package::find($package);
