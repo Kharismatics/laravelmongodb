@@ -16,7 +16,7 @@ class PackageTest extends TestCase
      */
     public function test_index()
     {
-        $response = $this->get('api/package');
+        $response = $this->get('package');
 
         $response->assertStatus(200);
         $response
@@ -25,7 +25,7 @@ class PackageTest extends TestCase
     }
     public function test_store_validation()
     {
-        $response = $this->postJson('/api/package', [
+        $response = $this->postJson('/package', [
             'just_test' => 'just_test'
         ]);
 
@@ -39,7 +39,7 @@ class PackageTest extends TestCase
     }
     public function test_store()
     {
-        $response = $this->postJson('/api/package', [
+        $response = $this->postJson('/package', [
             "transaction_id" => "d0090c40-539f-479a-8274-899b9970bddc",
             "customer_name" => "PT. AMARA PRIMATIGA",
             "customer_code" => "1678593",
@@ -195,7 +195,7 @@ class PackageTest extends TestCase
     }
     public function test_index_after_store()
     {
-        $response = $this->get('api/package');
+        $response = $this->get('package');
 
         $response
             ->assertStatus(200)
@@ -206,7 +206,7 @@ class PackageTest extends TestCase
     }
     public function test_show()
     {
-        $response = $this->get('api/package/d0090c40-539f-479a-8274-899b9970bddc');
+        $response = $this->get('package/d0090c40-539f-479a-8274-899b9970bddc');
 
         $response
             ->assertJson(
@@ -222,7 +222,7 @@ class PackageTest extends TestCase
     }
     public function test_update_validation()
     {
-        $response = $this->putJson('/api/package/d0090c40-539f-479a-8274-899b9970bddc', [
+        $response = $this->putJson('/package/d0090c40-539f-479a-8274-899b9970bddc', [
             'customer_code' => '12345678'
         ]);
 
@@ -231,7 +231,7 @@ class PackageTest extends TestCase
     }
     public function test_update_put()
     {
-        $response = $this->putJson('/api/package/d0090c40-539f-479a-8274-899b9970bddc', [
+        $response = $this->putJson('/package/d0090c40-539f-479a-8274-899b9970bddc', [
             'customer_name' => 'PT. AMARA PRIMATIGA NEW',
             'customer_code' => '1234567'
         ]);
@@ -252,7 +252,7 @@ class PackageTest extends TestCase
     }
     public function test_update_patch()
     {
-        $response = $this->patchJson('/api/package/d0090c40-539f-479a-8274-899b9970bddc', [
+        $response = $this->patchJson('/package/d0090c40-539f-479a-8274-899b9970bddc', [
             'customer_code' => '7777777'
         ]);
 
@@ -271,19 +271,19 @@ class PackageTest extends TestCase
     }
     public function test_show_after_update_patch()
     {
-        $response = $this->get('api/package');
+        $response = $this->get('package');
 
         $response->assertStatus(200);
     }
     public function test_delete()
     {
-        $response = $this->delete('api/package/d0090c40-539f-479a-8274-899b9970bddc');
+        $response = $this->delete('package/d0090c40-539f-479a-8274-899b9970bddc');
 
         $response->assertStatus(200);
     }
     public function test_index_after_delete()
     {
-        $response = $this->get('api/package');
+        $response = $this->get('package');
 
         $response->assertStatus(200);
         $response
